@@ -9,6 +9,7 @@ import SearchResults from "../components/SearchResults";
 const Layout = () => {
   const [news, setNews] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     async function fetchNews() {
       try {
@@ -27,16 +28,15 @@ const Layout = () => {
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm);
   };
+
   return (
-    <div>
-      <div>
-        <Navbar onSearch={handleSearch} />
-      </div>
-      <div className="flex h-full">
-        <div className="w-1/4">
+    <div className="min-h-screen flex flex-col">
+      <Navbar onSearch={handleSearch} />
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-1/4 bg-gray-200">
           <Sidebar />
         </div>
-        <div className="w-3/4">
+        <div className="w-full md:w-3/4 bg-gray-100">
           {searchTerm ? (
             <SearchResults searchTerm={searchTerm} news={news} />
           ) : (
